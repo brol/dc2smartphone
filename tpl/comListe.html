@@ -1,39 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{tpl:BlogLanguage}}" lang="{{tpl:BlogLanguage}}">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{{tpl:extends parent="__layout.html"}}
 
+<tpl:Block name="head-title">
+  <title>{{tpl:ComListePageTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}<tpl:PaginationIf start="0"> - {{tpl:lang page}} {{tpl:PaginationCurrent}}</tpl:PaginationIf></title>
+</tpl:Block>
+
+<tpl:Block name="meta-robots">
   <meta name="ROBOTS" content="{{tpl:BlogMetaRobots robots="NOINDEX,NOARCHIVE"}}" />
+</tpl:Block>
 
-  <title>{{tpl:ComListePageTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}</title>
-  <meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-  <meta name="author" content="{{tpl:BlogEditor encode_html="1"}}" />
-  <meta name="date" scheme="W3CDTF" content="{{tpl:BlogUpdateDate iso8601="1"}}" />
-
-  <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-  <meta name="dc.title" lang="{{tpl:BlogLanguage}}" content="{{tpl:ComListePageTitle}} - {{tpl:BlogName encode_html="1"}}" />
-  <meta name="dc.language" content="{{tpl:BlogLanguage}}" />
-  <meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
-  <meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-  <meta name="dc.date" scheme="W3CDTF" content="{{tpl:BlogUpdateDate iso8601="1"}}" />
-  <meta name="dc.type" content="text" />
-  <meta name="dc.format" content="text/html" />
-
-  <link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
+<tpl:Block name="head-linkrel">
   <link rel="contents" title="{{tpl:lang Archives}}" href="{{tpl:BlogArchiveURL}}" />
+</tpl:Block>
 
-  {{tpl:include src="_head.html"}}
-</head>
+<tpl:Block name="body-tag">
 
-<body class="dc-comliste dc-gen" onload="window.scrollTo(0, 1)">
-<div id="page">
-{{tpl:include src="_top.html"}}
+<body class="dc-comliste dc-gen" onload="window.scrollTo(0, 1)"></tpl:Block>
 
-<div id="wrapper">
-
-<div id="main">
-  <div id="content">
+<tpl:Block name="main-content">
 	<div id="content-info">
   	<h2>{{tpl:ComListePageTitle encode_html="1"}}</h2>
 	</div>
@@ -62,19 +45,7 @@
 	  </div>
 	</div>
 	<p class="pagination">
-	{{tpl:ComListePaginationLinks}}
+	{{tpl:lang Pages:}} {{tpl:ComListePaginationLinks}}
 	</p>
 
-	<p class="post-info">
-	{{tpl:lang Number of comments per page}} :: {{tpl:ComListeNbCommentsPerPage}}<br />
-	{{tpl:lang Number of comments}} :: {{tpl:ComListeNbComments}}
-	</p>
-  </div>
-</div>
-
-</div> <!-- End #wrapper -->
-
-{{tpl:include src="_footer.html"}}
-</div> <!-- End #page -->
-</body>
-</html>
+</tpl:Block>

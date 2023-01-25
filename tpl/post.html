@@ -1,61 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{tpl:BlogLanguage}}" lang="{{tpl:BlogLanguage}}">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="ROBOTS" content="{{tpl:BlogMetaRobots}}" />
-  
+{{tpl:extends parent="__layout.html"}}
+<tpl:Block name="head-title">
   <title>{{tpl:EntryTitle encode_html="1"}} - {{tpl:BlogName encode_html="1"}}</title>
+</tpl:Block>
+<tpl:Block name="meta-entry">
   <meta name="description" lang="{{tpl:EntryLang}}" content="{{tpl:EntryContent full="1" encode_html="1" remove_html="1" cut_string="180"}}" />
-  <meta name="copyright" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
   <meta name="author" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
-  <meta name="date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
-  
-  <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-  <meta name="dc.title" content="{{tpl:EntryTitle encode_html="1"}}" />
-  <meta name="dc.description" lang="{{tpl:EntryLang}}" content="{{tpl:EntryContent full="1" encode_html="1" remove_html="1" cut_string="180"}}" />
-  <meta name="dc.creator" content="{{tpl:EntryAuthorCommonName encode_html="1"}}" />
-  <meta name="dc.language" content="{{tpl:EntryLang}}" />
-  <meta name="dc.publisher" content="{{tpl:BlogEditor encode_html="1"}}" />
-  <meta name="dc.rights" content="{{tpl:BlogCopyrightNotice encode_html="1"}}" />
-  <meta name="dc.date" scheme="W3CDTF" content="{{tpl:EntryDate iso8601="1"}}" />
-  <meta name="dc.type" content="text" />
-  <meta name="dc.format" content="text/html" />
-  
-  <link rel="top" href="{{tpl:BlogURL}}" title="{{tpl:lang Home}}" />
+  <meta name="date" content="{{tpl:EntryDate iso8601="1"}}" />
+</tpl:Block>
+<tpl:Block name="head-linkrel">
   <link rel="contents" href="{{tpl:BlogArchiveURL}}" title="{{tpl:lang Archives}}" />
-  <tpl:EntryIf pings_active="1"><link rel="pingback" href="{{tpl:BlogXMLRPCURL}}" /></tpl:EntryIf>
-  
-  <tpl:EntryNext><link rel="next" href="{{tpl:EntryURL}}"
-  title="{{tpl:EntryTitle encode_html="1"}}" /></tpl:EntryNext>
-  
-  <tpl:EntryPrevious><link rel="prev" href="{{tpl:EntryURL}}"
-  title="{{tpl:EntryTitle encode_html="1"}}" /></tpl:EntryPrevious>
-  
+  <tpl:EntryIf pings_active="1">
+    <link rel="pingback" href="{{tpl:BlogXMLRPCURL}}" />
+  </tpl:EntryIf>
+  <tpl:EntryNext>
+    <link rel="next" href="{{tpl:EntryURL}}" title="{{tpl:EntryTitle encode_html="1"}}" />
+  </tpl:EntryNext>
+  <tpl:EntryPrevious>
+    <link rel="prev" href="{{tpl:EntryURL}}" title="{{tpl:EntryTitle encode_html="1"}}" />
+  </tpl:EntryPrevious>
   <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="{{tpl:BlogFeedURL type="atom"}}" />
-  
-  {{tpl:include src="_head.html"}}
-  
-  <script type="text/javascript" src="{{tpl:BlogThemeURL}}/../default/js/post.js"></script>
-  <script type="text/javascript">
-  //<![CDATA[
-  var post_remember_str = '{{tpl:lang Remember me on this blog}}';
-  //]]>
-  </script>
-</head>
+</tpl:Block>
+<tpl:Block name="html-head">
+  {{tpl:parent}}
+  <tpl:EntryIf comments_active="1">
+    <script type="application/json" id="dc_post_remember_str-data">
+    { "post_remember_str": "{{tpl:lang Remember me on this blog}}" }
+    </script>
+    <script src="{{tpl:BlogQmarkURL}}pf=post.js"></script>
+  </tpl:EntryIf>
+</tpl:Block>
+<tpl:Block name="body-tag">
 
-<body class="dc-post" onload="window.scrollTo(0, 1)">
-<div id="page">
-{{tpl:EntryPingData}}
-
-{{tpl:include src="_top.html"}}
-
-<div id="wrapper">
-
-<div id="main">
-  <div id="content">
-  
-    <div class="post">
+  <body class="dc-post" onload="window.scrollTo(0, 1)">
+</tpl:Block>
+<tpl:Block name="page-top">
+  {{tpl:EntryPingData}}
+  {{tpl:parent}}
+</tpl:Block>
+<tpl:Block name="main-content">
+    <div class="post" role="article">
 
   <!-- # navigation dans la catégorie -->
     <p id="navincat">
@@ -80,26 +63,24 @@
     <!-- # --BEHAVIOR-- publicEntryAfterContent -->
     {{tpl:SysBehavior behavior="publicEntryAfterContent"}}
   </div>
-  
   <!-- # Attachments -->
   <tpl:Attachments>
     <tpl:AttachmentsHeader>
       <div id="attachments">
-      <h3>{{tpl:lang Attachments}}</h3>
-      <ul>
+        <h3>{{tpl:lang Attachments}}</h3>
+        <ul>
     </tpl:AttachmentsHeader>
-      <li class="{{tpl:AttachmentType}}">
-        <tpl:AttachmentIf is_mp3="1">
-          {{tpl:include src="_mp3_player.html"}} -
-        </tpl:AttachmentIf>
-        <tpl:AttachmentIf is_flv="1">
-	     {{tpl:include src="_flv_player.html"}}
-	   </tpl:AttachmentIf>
-	   <tpl:AttachmentIf is_flv="0">
-	   	<a href="{{tpl:AttachmentURL}}"
-		title="{{tpl:AttachmentFileName}} ({{tpl:AttachmentSize}})">{{tpl:AttachmentTitle}}</a>
-        </tpl:AttachmentIf>
-      </li>
+    <li class="{{tpl:AttachmentType}}">
+      <tpl:AttachmentIf is_audio="1">
+        {{tpl:include src="_audio_player.html"}}
+      </tpl:AttachmentIf>
+      <tpl:AttachmentIf is_video="1">
+        {{tpl:include src="_video_player.html"}}
+      </tpl:AttachmentIf>
+      <tpl:AttachmentIf is_audio="0" is_video="0">
+        <a href="{{tpl:AttachmentURL}}" title="{{tpl:AttachmentFileName}} ({{tpl:AttachmentSize}})">{{tpl:AttachmentTitle}}</a>
+      </tpl:AttachmentIf>
+    </li>
     <tpl:AttachmentsFooter>
       </ul>
       </div>
@@ -126,7 +107,7 @@
     <tpl:EntryIf comments_active="1">
     <li id="comments-feed"><a class="feedco" href="{{tpl:BlogFeedURL type="atom"}}/comments/{{tpl:EntryID}}" title="{{tpl:lang This post's comments Atom feed}}"><strong>{{tpl:lang This post's comments feed}}</strong></a></li>
     </tpl:EntryIf>
-    </ul>
+	</ul>
 
   </div>
  
@@ -219,9 +200,8 @@
       </fieldset>
       
       <fieldset>
-        <p class="buttons">
-        <input type="submit" class="preview" name="preview" value="{{tpl:lang preview}}" />
-        <input type="submit" class="submit" value="{{tpl:lang send}}" />
+        <p class="buttons"><input type="submit" class="preview" name="preview" value="{{tpl:lang preview}}" />
+          <tpl:IfCommentPreviewOptional><input type="submit" class="submit" value="{{tpl:lang send}}" /></tpl:IfCommentPreviewOptional>
         </p>
       </fieldset>
     </form>
@@ -259,11 +239,4 @@
   </tpl:EntryIf>
   
   </div>
-</div> <!-- End #main -->
-
-</div> <!-- End #wrapper -->
-
-{{tpl:include src="_footer.html"}}
-</div> <!-- End #page -->
-</body>
-</html>
+</tpl:Block>
