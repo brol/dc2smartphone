@@ -18,12 +18,12 @@ body {	background: #fff; font-family: helvetica,arial,sans-serif; font-size:90%;
 
 
 /*--Nom du blog avec titre court--*/
-#top { background: #C9C9C9 url(img/bg_header.png) repeat-x bottom left; }
+#top { background: linear-gradient(to bottom, #c0c0c0 0%,#808080 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 #top h1 { padding: 0 0 0 10px; font-size: 20px;}
 #top h1 a, #top h1 a:visited, #top h1 a:hover { height: 40px; line-height: 40px; color: #fff;}
 
 /*--Nom du blog avec titre long--*/
-/*#top { background: #C9C9C9 url(img/bg_header.png) repeat-x bottom left; }
+/*#top { background: linear-gradient(to bottom, #c0c0c0 0%,#808080 100%); }
 #top h1 { padding: 5px 10px; font-size: 20px;}
 #top h1 a, #top h1 a:visited, #top h1 a:hover { display: block; color: #fff;}*/
 
@@ -49,7 +49,7 @@ a:link, a:visited, a:hover { color: #275EA6; text-decoration: none; }
 pre { overflow: auto; width: 100%; height: auto; }
 
 /* 3. MENU */
-#menunav { height: 36px; margin: 0px; background: transparent url(img/bg_nav.png) repeat-x top left; list-style-type: none; }
+#menunav { height: 36px; margin: 0px; background: linear-gradient(to bottom, #3e3e3e 0%,#242424 100%); list-style-type: none; }
 #menunav li {float: left; width: 16.66%; text-align: center;}
 
 #menunav li a, li a:visited, #menunav li a:hover { display: block; margin: 0px; padding: 10px;  color: #fff; text-decoration: none; font-size: 80%;}
@@ -103,7 +103,7 @@ pre { overflow: auto; width: 100%; height: auto; }
 .post-excerpt blockquote, .post-content blockquote {margin:0 0 0 10px;}
 
 .dc-post #infosbillet {margin: 0px 0px 10px 0px;}
-.dc-post #infosbillet h3 { margin-bottom: 10px; padding: 7px; background: transparent url(img/bg_posth3.png) repeat-x top left; color: #fff; }
+.dc-post #infosbillet h3 { margin-bottom: 10px; padding: 7px; background: linear-gradient(to bottom, #c0c0c0 0%,#808080 100%); color: #fff; }
 .dc-post #infosbillet ul, .dc-post #infosbillet ul li {list-style: none;}
 .dc-post #infosbillet ul { margin: 0 0 0 15px; padding: 4px 0; }
 .dc-post #infosbillet ul li { padding: 1px 0 1px 15px; background: transparent url(img/li.gif) no-repeat 0 5px; font-size: 1em; line-height: 1.3; }
@@ -114,7 +114,7 @@ pre { overflow: auto; width: 100%; height: auto; }
 .dc-post #post-rss a, .dc-post #post-rss a:visited, .dc-post #post-rss a:hover {text-decoration: underline; }
 
 .dc-post #comments, .dc-post #pings, .dc-post #comment-form {margin: 10px 0px 20px 0px;}
-.dc-post #pings h3, .dc-post #comments h3, .dc-post #comment-form h3 {padding: 7px; background: transparent url(img/bg_posth3.png) repeat-x top left; color: #fff; }
+.dc-post #pings h3, .dc-post #comments h3, .dc-post #comment-form h3 {padding: 7px; background: linear-gradient(to bottom, #c0c0c0 0%,#808080 100%); color: #fff; }
 .dc-post #ping-url {margin-left: 10px; }
 .dc-post #ping-url a, .dc-post #ping-url a:visited, .dc-post #ping-url a:hover {text-decoration: underline; }
 
